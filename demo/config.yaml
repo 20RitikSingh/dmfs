@@ -1,0 +1,14 @@
+servers:
+  - listenAddr: "127.0.0.1:8000"
+    root: "./data/server0"
+    nodes:
+
+  - listenAddr: "127.0.0.1:8001"
+    root: "./data/server1"
+    nodes:
+      - ":8000"
+  - listenAddr: "127.0.0.1:8002"
+    root: "./data/server2"
+    nodes:
+      - ":8000"
+      - ":8001"
