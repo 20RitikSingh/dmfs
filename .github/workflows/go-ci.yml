@@ -1,0 +1,34 @@
+name: Go CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install git and make
+        run: apt-get update && apt-get install -y git make
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.24.3'
+
+      - name: Set Go env to bypass proxy
+        run: go env -w GOPROXY=direct
+
+      - name: Install dependencies
+        run: go mod download
+
+      - name: Build
+        run: make build
+
+      - name: Run tests
+        run: make test
