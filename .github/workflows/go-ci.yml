@@ -13,9 +13,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Install git and make
-        run: apt-get update && apt-get install -y git make
-
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
